@@ -10,6 +10,7 @@ redirect_from:
 product: '{% data reusables.gated-features.pages %}'
 versions:
   fpt: '*'
+  ghec: '*'
 topics:
   - Pages
 shortTitle: Troubleshoot a custom domain
@@ -32,7 +33,10 @@ Then, make sure the _CNAME_ file is formatted correctly.
 
 If you have trouble pointing the default domain for your site to your custom domain, contact your DNS provider.
 
-You can also test whether your custom domain's DNS records are configured correctly. For more information, see "[Managing a custom domain for your {% data variables.product.prodname_pages %} site](/articles/managing-a-custom-domain-for-your-github-pages-site)."
+You can also use one of the following methods to test whether your custom domain's DNS records are configured correctly:
+
+- A CLI tool such as `dig`. For more information, see "[Managing a custom domain for your {% data variables.product.prodname_pages %} site](/articles/managing-a-custom-domain-for-your-github-pages-site)".
+- An online DNS lookup tool.
 
 ## Custom domain names that are unsupported
 

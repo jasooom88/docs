@@ -14,6 +14,7 @@ versions:
   fpt: '*'
   ghes: '*'
   ghae: '*'
+  ghec: '*'
 children:
   - /pushing-commits-to-a-remote-repository
   - /getting-changes-from-a-remote-repository
@@ -23,5 +24,6 @@ children:
   - /about-git-rebase
   - /using-git-rebase-on-the-command-line
   - /resolving-merge-conflicts-after-a-git-rebase
+  - /dealing-with-special-characters-in-branch-and-tag-names
 ---
 

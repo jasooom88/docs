@@ -5,6 +5,7 @@ redirect_from:
   - /github/administering-a-repository/keeping-your-dependencies-updated-automatically
 versions:
   fpt: '*'
+  ghec: '*'
 topics:
   - Repositories
   - Dependabot
@@ -17,6 +18,7 @@ children:
   - /enabling-and-disabling-version-updates
   - /listing-dependencies-configured-for-version-updates
   - /managing-pull-requests-for-dependency-updates
+  - /automating-dependabot-with-github-actions
   - /managing-encrypted-secrets-for-dependabot
   - /customizing-dependency-updates
   - /configuration-options-for-dependency-updates

@@ -3,14 +3,14 @@ title: Using the Command Palette in Codespaces
 intro: 'You can use the Command Palette feature of {% data variables.product.prodname_vscode %} to access many commands in Codespaces.'
 versions:
   fpt: '*'
+  ghec: '*'
 type: reference
 topics:
   - Codespaces
   - Visual Studio Code
+product: '{% data reusables.gated-features.codespaces %}'
 shortTitle: Command Palette
 ---
-
-{% data reusables.codespaces.release-stage %}
 
 ## About the Command Palette
 
@@ -36,7 +36,7 @@ To see all commands related to {% data variables.product.prodname_github_codespa
 
 ### Suspending or stopping a codespace
 
-If you add a new secret, you'll have to stop and restart the codespace for it to apply your changes. 
+If you add a new secret or change the machine type, you'll have to stop and restart the codespace for it to apply your changes. 
 
 To suspend or stop your codespace's container, access the Command Palette, then start typing "stop". Select **Codespaces: Stop Current Codespace**.
 

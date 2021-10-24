@@ -34,21 +34,23 @@ featuredLinks:
 changelog:
   label: security-and-compliance
   versions:
-    free-pro-team: '*'
+    fpt: '*'
+    ghec: '*'
 examples_source: data/product-examples/code-security/code-examples.yml
 layout: product-landing
 versions:
   fpt: '*'
   ghes: '>=3.0'
   ghae: '*'
+  ghec: '*'
 topics:
   - Repositories
   - Dependencies
   - Vulnerabilities
 children:
   - /getting-started
-  - /secret-security
-  - /secure-coding
+  - /secret-scanning
+  - /code-scanning
   - /security-advisories
   - /supply-chain-security
   - /security-overview

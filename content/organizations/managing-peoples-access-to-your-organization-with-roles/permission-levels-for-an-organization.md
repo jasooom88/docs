@@ -9,6 +9,7 @@ versions:
   fpt: '*'
   ghes: '*'
   ghae: '*'
+  ghec: '*'
 topics:
   - Organizations
   - Teams
@@ -17,15 +18,19 @@ shortTitle: Permissions for organization
 
 ## Permission levels for an organization
 
-Organization members can have *owner*{% ifversion fpt %}, *billing manager*,{% endif %} or *member* roles:
+Organization members can have *owner*{% ifversion fpt or ghec %}, *billing manager*,{% endif %} or *member* roles:
 
 - **Owners** have complete administrative access to your organization. This role should be limited, but to no less than two people, in your organization. For more information, see "[Maintaining ownership continuity for your organization](/organizations/managing-peoples-access-to-your-organization-with-roles/maintaining-ownership-continuity-for-your-organization)."
-{% ifversion fpt %}
+{% ifversion fpt or ghec %}
 - **Billing managers** allow a person to manage billing settings. For more information, see "[Adding a billing manager to your organization](/articles/adding-a-billing-manager-to-your-organization)".
 {% endif %}
 - **Members** are the default role for everyone else.
 
 {% ifversion fpt %}
+Some of the features listed below are limited to organizations using {% data variables.product.prodname_ghe_cloud %}. {% data reusables.enterprise.link-to-ghec-trial %}
+{% endif %}
+
+{% ifversion fpt or ghec %}
 <!--Dotcom version has extra column for Billing managers-->
 
 | Organization action | Owners | Members | Billing managers |
@@ -42,7 +47,7 @@ Organization members can have *owner*{% ifversion fpt %}, *billing manager*,{% e
 | Set scheduled reminders (see "[Managing scheduled reminders for pull requests](/github/setting-up-and-managing-organizations-and-teams/managing-scheduled-reminders-for-pull-requests)") | **X** |  |  |
 | Add collaborators to **all repositories** | **X** |  |  |
 | Access the organization audit log | **X** |  |  |
-| Edit the organization's profile page (see "[About your organization's profile](/articles/about-your-organization-s-profile)" for details) | **X** |  |  |
+| Edit the organization's profile page (see "[About your organization's profile](/github/setting-up-and-managing-your-github-profile/customizing-your-profile/about-your-organizations-profile)" for details) | **X** |  |  |
 | Verify the organization's domains (see "[Verifying your organization's domain](/articles/verifying-your-organization-s-domain)" for details) | **X** |  |  |
 | Restrict email notifications to verified or approved domains (see "[Restricting email notifications for your organization](/organizations/keeping-your-organization-secure/restricting-email-notifications-for-your-organization)" for details) | **X** |  |  |
 | Delete **all teams** | **X** |  |  |
@@ -98,7 +103,9 @@ Organization members can have *owner*{% ifversion fpt %}, *billing manager*,{% e
 | Configure code review assignments (see "[Managing code review assignment for your team](/organizations/organizing-members-into-teams/managing-code-review-assignment-for-your-team)") | **X** |  |
 | Add collaborators to **all repositories** | **X** |  |
 | Access the organization audit log | **X** |  |
-| Edit the organization's profile page (see "[About your organization's profile](/articles/about-your-organization-s-profile)" for details) | **X** |  |  |
+| Edit the organization's profile page (see "[About your organization's profile](/github/setting-up-and-managing-your-github-profile/customizing-your-profile/about-your-organizations-profile)" for details) | **X** |  |  |{% ifversion ghes > 3.1 %}
+| Verify the organization's domains (see "[Verifying your organization's domain](/articles/verifying-your-organization-s-domain)" for details) | **X** |  |
+| Restrict email notifications to verified or approved domains (see "[Restricting email notifications for your organization](/organizations/keeping-your-organization-secure/restricting-email-notifications-for-your-organization)" for details) | **X** |  |{% endif %}
 | Delete **all teams** | **X** |  |
 | Delete the organization account, including all repositories | **X** |  |
 | Create teams (see "[Setting team creation permissions in your organization](/articles/setting-team-creation-permissions-in-your-organization)" for details) | **X** | **X** |
@@ -127,9 +134,9 @@ Organization members can have *owner*{% ifversion fpt %}, *billing manager*,{% e
 
 ## {% data variables.product.prodname_github_app %} managers
 
-By default, only organization owners can manage the settings of {% data variables.product.prodname_github_app %}s owned by an organization. To allow additional users to manage {% data variables.product.prodname_github_app %}s owned by an organization, an owner can grant them {% data variables.product.prodname_github_app %} manager permissions.
+By default, only organization owners can manage the settings of {% data variables.product.prodname_github_apps %} owned by an organization. To allow additional users to manage {% data variables.product.prodname_github_apps %} owned by an organization, an owner can grant them {% data variables.product.prodname_github_app %} manager permissions.
 
-When you designate a user as a {% data variables.product.prodname_github_app %} manager in your organization, you can grant them access to manage the settings of some or all {% data variables.product.prodname_github_app %}s owned by the organization. For more information, see:
+When you designate a user as a {% data variables.product.prodname_github_app %} manager in your organization, you can grant them access to manage the settings of some or all {% data variables.product.prodname_github_apps %} owned by the organization. For more information, see:
 
 - "[Adding GitHub App managers in your organization](/articles/adding-github-app-managers-in-your-organization)"
 - "[Removing GitHub App managers from your organization](/articles/removing-github-app-managers-from-your-organization)"

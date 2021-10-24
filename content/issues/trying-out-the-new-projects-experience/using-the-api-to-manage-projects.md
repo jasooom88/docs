@@ -3,6 +3,7 @@ title: Using the API to manage projects (beta)
 intro: You can use the GraphQL API to find information about projects and to update projects.
 versions:
   fpt: '*'
+  ghec: '*'
 miniTocMaxHeadingLevel: 3
 allowTitleToDifferFromFilename: true
 type: how_to
@@ -28,9 +29,9 @@ In all of the following cURL examples, replace `TOKEN` with a token that has the
 
 {% cli %}
 
-Before running {% data variables.product.prodname_cli %} commands, you must authenticate by running `gh auth login` and providing an authentication token that has the `read:org` scope (for queries) or `write:org` scope (for queries and mutations). During the beta, you will not be able to authenticate using a web browser. For more information on command line authentication, see "[gh auth login](https://cli.github.com/manual/gh_auth_login)." For more information about creating a token, see "[Creating a personal access token](/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)."
+{% data reusables.cli.cli-learn-more %}
 
-To download or find more information about {% data variables.product.prodname_cli %}, see the [{% data variables.product.prodname_cli %} manual](https://cli.github.com/manual/).
+Before running {% data variables.product.prodname_cli %} commands, you must authenticate by running `gh auth login` and providing an authentication token that has the `read:org` scope (for queries) or `write:org` scope (for queries and mutations). During the beta, you will not be able to authenticate using a web browser. For more information on command line authentication, see "[gh auth login](https://cli.github.com/manual/gh_auth_login)." For more information about creating a token, see "[Creating a personal access token](/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)."
 
 {% endcli %}
 
@@ -38,7 +39,7 @@ To download or find more information about {% data variables.product.prodname_cl
 
 ## Using variables
 
-In all of the following examples, you can use variables to simplify your scripts. Use `-F` to pass a variable that is a number, Boolean, or null. Use `-f` for other variables. For example, 
+In all of the following examples, you can use variables to simplify your scripts. Use `-F` to pass a variable that is a number, Boolean, or null. Use `-f` for other variables. For example,
 
 ```shell
 my_org="octo-org"
@@ -53,13 +54,13 @@ gh api graphql --header 'GraphQL-Features: projects_next_graphql' -f query='
   }' -f organization=$my_org -F number=$my_num
 ```
 
-For more information, see "[Forming calls with GraphQL](/graphql/guides/forming-calls-with-graphql#working-with-variables)."
+For more information, see "[Forming calls with GraphQL]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/guides/forming-calls-with-graphql#working-with-variables)."
 
 {% endcli %}
 
 ## Finding information about projects
 
-Use queries to get data about projects. For more information, see "[About queries](/graphql/guides/forming-calls-with-graphql#about-queries)."
+Use queries to get data about projects. For more information, see "[About queries]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/guides/forming-calls-with-graphql#about-queries)."
 
 ### Finding the node ID of a project
 
@@ -152,7 +153,7 @@ gh api graphql --header 'GraphQL-Features: projects_next_graphql' -f query='
             name
             settings
           }
-        } 
+        }
       }
     }
   }'
@@ -218,7 +219,7 @@ gh api graphql --header 'GraphQL-Features: projects_next_graphql' -f query='
         items(first: 20) {
           nodes{
             title
-            id 
+            id
             fieldValues(first: 8) {
               nodes{
                 value
@@ -264,7 +265,7 @@ A project may contain items that a user does not have permission to view. In thi
 
 ## Updating projects
 
-Use mutations to update projects. For more information, see "[About mutations](/graphql/guides/forming-calls-with-graphql#about-mutations)."
+Use mutations to update projects. For more information, see "[About mutations]({% ifversion ghec %}/free-pro-team@latest{% endif %}/graphql/guides/forming-calls-with-graphql#about-mutations)."
 
 {% note %}
 
@@ -355,16 +356,16 @@ gh api graphql --header 'GraphQL-Features: projects_next_graphql' -f query='
 
 {% note %}
 
-**Note:** You cannot use `updateProjectNextItemField` to change `Assignees`, `Labels`, `Milestone`, or `Repository` because these fields are properties of pull requests and issues, not of project items. Instead, you must use the [addAssigneesToAssignable](/graphql/reference/mutations#addassigneestoassignable), [removeAssigneesFromAssignable](/graphql/reference/mutations#removeassigneesfromassignable), [addLabelsToLabelable](/graphql/reference/mutations#addlabelstolabelable), [removeLabelsFromLabelable](/graphql/reference/mutations#removelabelsfromlabelable), [updateIssue](/graphql/reference/mutations#updateissue), [updatePullRequest](/graphql/reference/mutations#updatepullrequest), or [transferIssue](/graphql/reference/mutations#transferissue) mutations.
+**Note:** You cannot use `updateProjectNextItemField` to change `Assignees`, `Labels`, `Milestone`, or `Repository` because these fields are properties of pull requests and issues, not of project items. Instead, you must use the [addAssigneesToAssignable]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/mutations#addassigneestoassignable), [removeAssigneesFromAssignable]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/mutations#removeassigneesfromassignable), [addLabelsToLabelable]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/mutations#addlabelstolabelable), [removeLabelsFromLabelable]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/mutations#removelabelsfromlabelable), [updateIssue]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/mutations#updateissue), [updatePullRequest]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/mutations#updatepullrequest), or [transferIssue]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/mutations#transferissue) mutations.
 
 {% endnote %}
 
 ### Updating a single-select field
 
-The following example will update a date field. 
-- `PROJECT_ID` - Replace this with the node ID of your project. 
-- `ITEM_ID` - Replace this with the node ID of the item you want to update. 
-- `FIELD_ID` -  Replace this with the ID of the field that you want to update. 
+The following example will update a date field.
+- `PROJECT_ID` - Replace this with the node ID of your project.
+- `ITEM_ID` - Replace this with the node ID of the item you want to update.
+- `FIELD_ID` -  Replace this with the ID of the field that you want to update.
 - `OPTION_ID` - Replace this with the ID of the desired value.
 
 {% include tool-switcher %}
@@ -437,9 +438,9 @@ gh api graphql --header 'GraphQL-Features: projects_next_graphql' -f query='
 
 #### ProjectNext
 
-- [Closable](/graphql/reference/interfaces#closable)
-- [Node](/graphql/reference/interfaces#node)
-- [Updatable](/graphql/reference/interfaces#updatable)
+- [Closable]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/interfaces#closable)
+- [Node]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/interfaces#node)
+- [Updatable]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/interfaces#updatable)
 
 **Fields**
 
@@ -509,7 +510,7 @@ Name | Description
 
 #### ProjectNextItem
 
-- [Node](/graphql/reference/interfaces#node)
+- [Node]({% ifversion ghec%}/free-pro-team@latest{% endif %}/graphql/reference/interfaces#node)
 
 An item in a `ProjectNext`.
 
@@ -553,7 +554,7 @@ Name | Description
 
 #### ProjectNextItemFieldValue
 
-- [Node](/graphql/reference/interfaces#node)
+- [Node]({% ifversion ghec %}/free-pro-team@latest{% endif %}/graphql/reference/interfaces#node)
 
 A value of a field in an item in a `ProjectNext`.
 

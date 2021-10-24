@@ -1,7 +1,7 @@
 ---
 title: Creating an issue
 intro: 'Issues can be created in a variety of ways, so you can choose the most convenient method for your workflow.'
-permissions: People with read permissions can create an issue in a repository where issues are enabled.
+permissions: 'People with read access can create an issue in a repository where issues are enabled. {% data reusables.enterprise-accounts.emu-permission-repo %}'
 redirect_from:
   - /github/managing-your-work-on-github/managing-your-work-with-issues-and-pull-requests/creating-an-issue
   - /articles/creating-an-issue
@@ -22,6 +22,7 @@ versions:
   fpt: '*'
   ghes: '*'
   ghae: '*'
+  ghec: '*'
 topics:
   - Pull requests
   - Issues
@@ -35,14 +36,6 @@ Issues can be used to keep track of bugs, enhancements, or other requests. For m
 
 ## Creating an issue from a repository
 
-{% ifversion fpt or ghes or ghae %}
-{% tip %}
-
-**Tip**: You can also create an issue using the {% data variables.product.prodname_cli %}. For more information, see "[`gh issue create`](https://cli.github.com/manual/gh_issue_create)" in the {% data variables.product.prodname_cli %} documentation.
-
-{% endtip %}
-{% endif %}
-
 {% data reusables.repositories.navigate-to-repo %}
 {% data reusables.repositories.sidebar-issues %}
 {% data reusables.repositories.new_issue %}
@@ -53,6 +46,22 @@ Issues can be used to keep track of bugs, enhancements, or other requests. For m
 {% data reusables.repositories.type-issue-title-and-description %}
 {% data reusables.repositories.assign-an-issue-as-project-maintainer %}
 {% data reusables.repositories.submit-new-issue %}
+
+## Creating an issue with {% data variables.product.prodname_cli %}
+
+{% data reusables.cli.about-cli %} To learn more about {% data variables.product.prodname_cli %}, see "[About {% data variables.product.prodname_cli %}](/github-cli/github-cli/about-github-cli)."
+
+To create an issue, use the `gh issue create` subcommand. To skip the interactive prompts, include the `--body` and the `--title` flags.
+
+```shell
+gh issue create --title "My new issue" --body "Here are more details."
+```
+
+You can also specify assignees, labels, milestones, and projects.
+
+```shell
+gh issue create --title "My new issue" --body "Here are more details." --assignee @me,monalisa --label "bug,help wanted" --project onboarding --milestone "learning codebase"
+```
 
 ## Creating an issue from a comment
 
@@ -89,11 +98,29 @@ You can open a new issue from a specific line or lines of code in a file or pull
 {% data reusables.repositories.assign-an-issue-as-project-maintainer %}
 {% data reusables.repositories.submit-new-issue %}
 
+{% ifversion fpt or ghec %}
+
+## Creating an issue from discussion
+
+People with triage permission to a repository can create an issue from a discussion.
+
+When you create an issue from a discussion, the contents of the discussion post will be automatically included in the issue body, and any labels will be retained. Creating an issue from a discussion does not convert the discussion to an issue or delete the existing discussion. For more information about {% data variables.product.prodname_discussions %}, see "[About discussions](/discussions/collaborating-with-your-community-using-discussions/about-discussions)."
+
+{% data reusables.discussions.discussions-tab %}
+{% data reusables.discussions.click-discussion-in-list %}
+1. In the right sidebar, click {% octicon "issue-opened" aria-label="The issues icon" %} **Create issue from discussion**.
+   ![Button to create issue from discussion](/assets/images/help/discussions/create-issue-from-discussion.jpg)
+{% data reusables.repositories.type-issue-title-and-description %}
+{% data reusables.repositories.assign-an-issue-as-project-maintainer %}
+{% data reusables.repositories.submit-new-issue %}
+
+{% endif %}
+
 ## Creating an issue from a project board note
 
 If you're using a project board to track and prioritize your work, you can convert project board notes to issues. For more information, see "[About project boards](/github/managing-your-work-on-github/about-project-boards)" and "[Adding notes to a project board](/github/managing-your-work-on-github/adding-notes-to-a-project-board#converting-a-note-to-an-issue)."
 
-{% ifversion fpt %}
+{% ifversion fpt or ghec %}
 
 ## Creating an issue from a task list item
 

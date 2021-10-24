@@ -7,6 +7,7 @@ versions:
   fpt: '*'
   ghes: '>=3.0'
   ghae: '*'
+  ghec: '*'
 learningTracks:
   - security_advisories
   - dependabot_alerts
@@ -52,8 +53,9 @@ includeGuides:
   - /code-security/security-advisories/publishing-a-security-advisory
   - /code-security/security-advisories/removing-a-collaborator-from-a-security-advisory
   - /code-security/security-advisories/withdrawing-a-security-advisory
-  - /code-security/security-overview/exploring-security-alerts
+  - /code-security/security-overview/about-the-security-overview
   - /code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/about-dependabot-version-updates
+  - /code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/automating-dependabot-with-github-actions
   - /code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates
   - /code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/customizing-dependency-updates
   - /code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/enabling-and-disabling-version-updates
